@@ -1,0 +1,390 @@
+{{ 'test-navbar-section.css' | asset_url | stylesheet_tag }}
+{{ 'test-hero-section.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+/* Desktop Background */
+#shopify-section-{{ section.id }} .hero-main-wrapper {
+  {% if section.settings.hero_bg_image != blank %}
+    background-image: url("{{ section.settings.hero_bg_image | image_url: width: 2000 }}");
+  {% else %}
+    background-image: url("{{ 'bannerImg.png' | asset_url }}");
+  {% endif %}
+}
+
+/* Mobile Image Styling */
+#shopify-section-{{ section.id }} .hero-mobile-img {
+  {% if section.settings.hero_bg_image != blank %}
+    background-image: url("{{ section.settings.hero_bg_image | image_url: width: 1000 }}");
+  {% else %}
+    background-image: url("{{ 'bannerImg.png' | asset_url }}");
+  {% endif %}
+}
+
+#shopify-section-{{ section.id }} .title {
+    font-size: {{ section.settings.title_font_size }}px;
+    color: {{ section.settings.store_title_color }};
+}
+#shopify-section-{{ section.id }} .slogan {
+    font-size: {{ section.settings.slogan_font_size }}px;
+    color: {{ section.settings.store_slogan_color }};
+}
+#shopify-section-{{ section.id }} .nav-button {
+    font-size: {{ section.settings.nav_button_text_size }}px;
+    color: {{ section.settings.nav_button_text_color }};
+    background-color: {{ section.settings.nav_button_bg_color }};
+    border-color: {{ section.settings.nav_button_bg_color }};
+}
+#shopify-section-{{ section.id }} .nav-button::before {
+    background-color: {{ section.settings.nav_button_hover_bg_color }};
+}
+#shopify-section-{{ section.id }} .nav-button:hover {
+    color: {{ section.settings.nav_button_hover_text_color }};
+    border-color: {{ section.settings.nav_button_hover_bg_color }};
+}
+#shopify-section-{{ section.id }} .nav-button svg {
+    stroke: {{ section.settings.nav_button_text_color }};
+}
+#shopify-section-{{ section.id }} .nav-button:hover svg {
+    stroke: {{ section.settings.nav_button_hover_text_color }};
+}
+#shopify-section-{{ section.id }} .header-text {
+    font-size: {{ section.settings.hero_heading_font_size }}px;
+    color: {{ section.settings.hero_heading_color }};
+}
+#shopify-section-{{ section.id }} .sub-header-text {
+    font-size: {{ section.settings.hero_sub_heading_font_size }}px;
+    color: {{ section.settings.hero_sub_heading_color }};
+}
+#shopify-section-{{ section.id }} .shop-now-button {
+    font-size: {{ section.settings.button_text_size }}px;
+    color: {{ section.settings.button_text_color }};
+    background-color: {{ section.settings.button_bg_color }};
+    border-color: {{ section.settings.button_bg_color }};
+}
+#shopify-section-{{ section.id }} .shop-now-button::before {
+    background-color: {{ section.settings.button_hover_bg_color }};
+}
+#shopify-section-{{ section.id }} .shop-now-button:hover {
+    color: {{ section.settings.button_hover_text_color }};
+    border-color: {{ section.settings.button_hover_bg_color }};
+}
+#shopify-section-{{ section.id }} .shop-now-button svg {
+    stroke: {{ section.settings.button_text_color }};
+}
+#shopify-section-{{ section.id }} .shop-now-button:hover svg {
+    stroke: {{ section.settings.button_hover_text_color }};
+}
+#shopify-section-{{ section.id }} .footer-text {
+    font-size: {{ section.settings.footer_font_size }}px;
+    color: {{ section.settings.footer_color }};
+}
+{%- endstyle -%}
+
+<section id="shopify-section-{{ section.id }}" class="banner-section">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <button class="toggle-btn" aria-label="Toggle Navigation" aria-expanded="false">
+            <svg class="icon-menu" xmlns="http://www.w3.org/2000/svg" width="20" height="12" viewBox="0 0 20 12" fill="none">
+              <path d="M1 6H19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M1 1H19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M1 11H19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <svg class="icon-close" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
+              <path d="M1 13.9994L13.7279 1.2715" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M1 1L13.7279 13.7279" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+          
+        <h1 class="title">{{ section.settings.store_title }}</h1>
+        <p class="slogan">{{ section.settings.store_slogan }}</p>
+        <a href="{{ section.settings.nav_button_url }}" class="nav-button">
+            <span>{{ section.settings.nav_button_text }}</span>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </a>
+    </nav>
+    
+    <!-- Desktop Hero View -->
+    <div class="hero-main-wrapper desktop-only">
+        <div class="banner-heading">
+            <h1 class="header-text">{{ section.settings.hero_heading }}</h1>
+            <p class="sub-header-text">{{ section.settings.hero_sub_heading }}</p>
+            <a href="{{ section.settings.button_url }}" class="shop-now-button">
+                <span>{{ section.settings.button_text }}</span>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+
+    <!-- Mobile Hero View -->
+    <div class="hero-mobile-wrapper mobile-only">
+        <div class="mobile-text-content">
+            <h1 class="header-text">{{ section.settings.hero_heading }}</h1>
+            <p class="sub-header-text">{{ section.settings.hero_sub_heading }}</p>
+        </div>
+        <div class="hero-mobile-img">
+            <a href="{{ section.settings.button_url }}" class="shop-now-button">
+                <span>{{ section.settings.button_text }}</span>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer Bar -->
+    <div class="banner-footer">
+        <p class="footer-text">{{ section.settings.footer_text }}</p>
+    </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const section = document.getElementById('shopify-section-{{ section.id }}');
+    const toggleBtn = section ? section.querySelector('.toggle-btn') : null;
+    const navbar = section ? section.querySelector('.navbar') : null;
+
+    if (toggleBtn && navbar) {
+      toggleBtn.addEventListener('click', function() {
+        const isActive = this.classList.toggle('is-active');
+        navbar.classList.toggle('menu-open');
+        this.setAttribute('aria-expanded', isActive);
+      });
+    }
+  });
+</script>
+
+{% schema %}
+{
+    "name": "Test Hero Section",
+    "settings": [
+        {
+            "type": "header",
+            "content": "NavBar Settings"
+        },
+        {
+            "type": "text",
+            "id": "store_title",
+            "label": "Store Title",
+            "default": "TISSO VISION"
+        },
+        {
+            "type": "color",
+            "id": "store_title_color",
+            "label": "Store Title Color",
+            "default": "#000000"
+        },
+        {
+            "type": "range",
+            "id": "title_font_size",
+            "label": "Title Font Size",
+            "min": 24,
+            "max": 40,
+            "step": 2,
+            "unit": "px",
+            "default": 26
+        },
+        {
+            "type": "text",
+            "id": "store_slogan",
+            "label": "Store Slogan",
+            "default": "Find the ideal gift for your loved ones."
+        },
+        {
+            "type": "color",
+            "id": "store_slogan_color",
+            "label": "Slogan Color"
+        },
+        {
+            "type": "range",
+            "id": "slogan_font_size",
+            "label": "Slogan Font Size",
+            "min": 16,
+            "max": 30,
+            "step": 2,
+            "unit": "px",
+            "default": 18
+        },
+        {
+            "type": "text",
+            "id": "nav_button_text",
+            "label": "NavBar Button Text",
+            "default": "Choose Gift"
+        },
+        {
+            "type": "url",
+            "id": "nav_button_url",
+            "label": "NavBar Button URL"
+        },
+        {
+            "type": "color",
+            "id": "nav_button_text_color",
+            "label": "NavBar Button Text Color",
+            "default": "#000000"
+        },
+        {
+            "type": "color",
+            "id": "nav_button_bg_color",
+            "label": "NavBar Button Background Color",
+            "default": "#ffffff"
+        },
+        {
+            "type": "range",
+            "id": "nav_button_text_size",
+            "label": "NavBar Button Text Size",
+            "min": 12,
+            "max": 24,
+            "step": 1,
+            "unit": "px",
+            "default": 16
+        },
+        {
+            "type": "color",
+            "id": "nav_button_hover_bg_color",
+            "label": "NavBar Button Hover Background",
+            "default": "#000000"
+        },
+        {
+            "type": "color",
+            "id": "nav_button_hover_text_color",
+            "label": "NavBar Button Hover Text Color",
+            "default": "#ffffff"
+        },
+        {
+            "type": "header",
+            "content": "Hero Section Settings"
+        },
+        {
+            "type": "image_picker",
+            "id": "hero_bg_image",
+            "label": "Hero Background Image"
+        },
+        {
+            "type": "text",
+            "id": "hero_heading",
+            "label": "Hero Heading",
+            "default": "The Gift Guide"
+        },
+        {
+            "type": "color",
+            "id": "hero_heading_color",
+            "label": "Heading Color"
+        },
+        {
+            "type": "range",
+            "id": "hero_heading_font_size",
+            "label": "Heading Font Size",
+            "min": 30,
+            "max": 90,
+            "step": 2,
+            "unit": "px",
+            "default": 70
+        },
+        {
+            "type": "text",
+            "id": "hero_sub_heading",
+            "label": "Hero Sub-Heading",
+            "default": "Discover Joy: Your Ultimate Holiday Gift Destination."
+        },
+        {
+            "type": "color",
+            "id": "hero_sub_heading_color",
+            "label": "Sub-Heading Color",
+            "default": "#000000"
+        },
+        {
+            "type": "range",
+            "id": "hero_sub_heading_font_size",
+            "label": "Sub-Heading Font Size",
+            "min": 14,
+            "max": 30,
+            "step": 1,
+            "unit": "px",
+            "default": 20
+        },
+        {
+            "type": "header",
+            "content": "Shop Now Button Settings"
+        },
+        {
+            "type": "text",
+            "id": "button_text",
+            "label": "Button Text",
+            "default": "SHOP NOW"
+        },
+        {
+            "type": "url",
+            "id": "button_url",
+            "label": "Button URL"
+        },
+        {
+            "type": "color",
+            "id": "button_text_color",
+            "label": "Button Text Color",
+            "default": "#ffffff"
+        },
+        {
+            "type": "color",
+            "id": "button_bg_color",
+            "label": "Button Background Color",
+            "default": "#000000"
+        },
+        {
+            "type": "range",
+            "id": "button_text_size",
+            "label": "Button Text Size",
+            "min": 12,
+            "max": 24,
+            "step": 1,
+            "unit": "px",
+            "default": 16
+        },
+        {
+            "type": "color",
+            "id": "button_hover_bg_color",
+            "label": "Button Hover Background",
+            "default": "#ffffff"
+        },
+        {
+            "type": "color",
+            "id": "button_hover_text_color",
+            "label": "Button Hover Text Color",
+            "default": "#000000"
+        },
+        {
+            "type": "header",
+            "content": "Footer Settings"
+        },
+        {
+            "type": "text",
+            "id": "footer_text",
+            "label": "Footer Text",
+            "default": "SUSTAINABLE, ETHICALLY MADE ACTIVEWEAR"
+        },
+        {
+            "type": "color",
+            "id": "footer_color",
+            "label": "Footer Color",
+            "default": "#000000"
+        },
+        {
+            "type": "range",
+            "id": "footer_font_size",
+            "label": "Footer Font Size",
+            "min": 12,
+            "max": 18,
+            "step": 1,
+            "unit": "px",
+            "default": 14
+        }
+    ],
+    "presets": [
+        {
+            "name": "Test Hero Section"
+        }
+    ]
+}
+{% endschema %}

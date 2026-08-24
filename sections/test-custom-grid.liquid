@@ -1,0 +1,209 @@
+{{ 'test-custom-grid.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'test-custom-grid.js' | asset_url }}" defer="defer"></script>
+
+{% style %}
+#shopify-section-{{ section.id }} .grid-main-heading {
+    font-size: {{ section.settings.grid_header_size }}px;
+    color: {{ section.settings.grid_header_color }};
+}
+
+#shopify-section-{{ section.id }} .add-to-cart-submit-btn {
+    font-size: {{ section.settings.button_text_size }}px;
+    color: {{ section.settings.button_text_color }};
+    background-color: {{ section.settings.button_bg_color }};
+    border-color: {{ section.settings.button_bg_color }};
+}
+#shopify-section-{{ section.id }} .add-to-cart-submit-btn::before {
+    background-color: {{ section.settings.button_hover_bg_color }};
+}
+#shopify-section-{{ section.id }} .add-to-cart-submit-btn:hover {
+    color: {{ section.settings.button_hover_text_color }};
+    border-color: {{ section.settings.button_hover_bg_color }};
+}
+#shopify-section-{{ section.id }} .add-to-cart-submit-btn svg {
+    stroke: {{ section.settings.button_text_color }};
+}
+#shopify-section-{{ section.id }} .add-to-cart-submit-btn:hover svg {
+    stroke: {{ section.settings.button_hover_text_color }};
+}
+{% endstyle %}
+
+<div class="custom-grid-wrapper section-{{ section.id }}-padding">
+  {% if section.settings.heading != blank %}
+    <h2 class="grid-main-heading">{{ section.settings.heading }}</h2>
+  {% endif %}
+
+  <div class="custom-grid-container">
+    {% assign has_assigned_blocks = false %}
+
+    {% comment %} 1. Render Block Products if available {% endcomment %}
+    {% for block in section.blocks %}
+      {% assign card_product = block.settings.product %}
+      {% if card_product != blank %}
+        {% assign has_assigned_blocks = true %}
+        <div class="grid-card-item" data-product-handle="{{ card_product.handle }}" {{ block.shopify_attributes }}>
+          <div class="image-wrapper">
+            {% if card_product.featured_media %}
+              <img src="{{ card_product.featured_media | image_url: width: 800 }}" 
+                   alt="{{ card_product.title | escape }}" 
+                   loading="lazy"
+                   width="{{ card_product.featured_media.width }}"
+                   height="{{ card_product.featured_media.height }}">
+            {% else %}
+              {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+            {% endif %}
+            
+            <button type="button" class="hotspot-trigger-btn" aria-label="Quick View {{ card_product.title }}">
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10" fill="none">
+                <path d="M4.98047 0.75V9.21154" stroke="black" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"/>
+                <path d="M0.75 4.98077H9.21154" stroke="black" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </button>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+
+    {% comment %} 2. Fallback Collection Products {% endcomment %}
+    {% if has_assigned_blocks == false and section.settings.collection != blank %}
+      {% for card_product in section.settings.collection.products limit: 6 %}
+        <div class="grid-card-item" data-product-handle="{{ card_product.handle }}">
+          <div class="image-wrapper">
+            {% if card_product.featured_media %}
+              <img src="{{ card_product.featured_media | image_url: width: 800 }}" 
+                   alt="{{ card_product.title | escape }}" 
+                   loading="lazy"/>
+            {% else %}
+              {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+            {% endif %}
+            <button type="button" class="hotspot-trigger-btn" aria-label="Quick View {{ card_product.title }}">
+              <span>+</span>
+            </button>
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+
+    {% comment %} 3. Placeholders {% endcomment %}
+    {% if has_assigned_blocks == false and section.settings.collection == blank %}
+      {% for i in (1..6) %}
+        <div class="grid-card-item placeholder-item">
+          <div class="image-wrapper">
+            {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+            <button type="button" class="hotspot-trigger-btn" disabled><span>+</span></button>
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+</div>
+
+<!-- Modal Popup Structure -->
+<div id="custom-product-modal" class="custom-modal-overlay" style="display: none;" aria-hidden="true">
+  <div class="custom-modal-content">
+    <button type="button" class="modal-close-btn" aria-label="Close modal">&times;</button>
+    <div id="modal-dynamic-content" class="modal-body-container"></div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom Product Grid",
+  "tag": "section",
+  "class": "section-custom-grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "Tisso vision in the wild"
+    },
+    {
+      "type": "color",
+      "id": "grid_header_color",
+      "label": "Grid Header Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "grid_header_size",
+      "label": "Grid Header Font Size",
+      "min": 18,
+      "max": 26,
+      "step": 1,
+      "default": 20
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Select Collection (Fallback)"
+    },
+    {
+      "type": "header",
+      "content": "Submit Button Settings"
+    },
+    {
+      "type": "range",
+      "id": "button_text_size",
+      "label": "Button Text Size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Text & Icon Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Hover Text & Icon Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_bg_color",
+      "label": "Hover Background Color",
+      "default": "#FFFFFF"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_item",
+      "name": "Product Card",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Test Custom Product Grid",
+      "blocks": [
+        { "type": "product_item" },
+        { "type": "product_item" },
+        { "type": "product_item" },
+        { "type": "product_item" },
+        { "type": "product_item" },
+        { "type": "product_item" }
+      ]
+    }
+  ]
+}
+{% endschema %}

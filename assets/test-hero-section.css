@@ -1,0 +1,235 @@
+.banner-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  width: 100%;
+  background-color: #F5F5F5;
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #f0f0f0;
+  box-sizing: border-box;
+}
+
+.hero-main-wrapper {
+  position: relative;
+  width: 100%;
+  height: 90vh;
+
+  background-repeat: repeat;
+  background-size:  contain;
+  background-position:  bottom right;
+  /* position: relative; */
+  display: flex;
+  align-items: end;
+  justify-content: start;
+  padding: 0;
+  box-sizing: border-box;
+}
+.banner-heading {
+  /* position: absolute;
+  bottom: 0;
+  left: 0; */
+  width: 40vw;
+  height: 40vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  z-index: 2;
+  background-color: white;
+  padding: 30px;
+}
+
+.header-text {
+  font-size: 48px;
+  font-weight: 700;
+  margin: 0 0 15px 0;
+  line-height: 1.15;
+}
+
+.sub-header-text {
+  font-size: 16px;
+  margin: 0 0 30px 0;
+  line-height: 1.5;
+}
+
+.shop-now-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  padding: 14px 28px;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid #000;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.banner-footer {
+  width: 100%;
+  background-color: #f9f9f9;
+  padding: 15px 20px;
+  text-align: center;
+  border-top: 1px solid #eee;
+}
+
+.footer-text {
+  margin: 0;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 768px) {
+  .navbar {
+    padding: 15px 20px;
+  }
+
+  .hero-main-wrapper {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 40px 20px 0 20px;
+    min-height: auto;
+    background-position: bottom center; 
+  }
+
+  .banner-heading {
+    align-items: center;
+    text-align: center;
+    max-width: 100%;
+    margin-bottom: 120px; 
+  }
+
+  .header-text {
+    font-size: 32px;
+  }
+
+  .sub-header-text {
+    font-size: 14px;
+  }
+}
+
+/* button Shop Now */
+.shop-now-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 15px 30px;
+  text-decoration: none;
+  border: 1px solid #000000;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  width: fit-content;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: color 0.4s ease, border-color 0.4s ease;
+}
+
+.shop-now-button span,
+.shop-now-button svg {
+  position: relative;
+  z-index: 2;
+  transition: transform 0.3s ease, fill 0.4s ease, stroke 0.4s ease;
+}
+
+.shop-now-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.shop-now-button:hover::before {
+  transform: scaleX(1);
+}
+
+.shop-now-button:hover svg {
+  transform: translateX(5px);
+}
+
+
+
+
+/* Display control */
+.mobile-only {
+  display: none;
+}
+
+@media (max-width: 1262px) {
+  .desktop-only {
+    display: none !important;
+  }
+  
+  .mobile-only {
+    display: block;
+  }
+
+  /* Mobile Layout Alignment */
+  .hero-mobile-wrapper {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+  }
+
+  .mobile-text-content {
+    padding: 30px 20px;
+    background-color: #ffffff;
+  }
+
+  .mobile-text-content .header-text {
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+
+  .mobile-text-content .sub-header-text {
+    max-width: 300px;
+    margin: 0 auto;
+    line-height: 1.4;
+  }
+
+  /* Mobile Image Container with Centered Button */
+  .hero-mobile-img {
+    position: relative;
+    width: 100%;
+    height: 420px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-mobile-img .shop-now-button {
+    position: absolute;
+    width: 80%;
+    max-width: 280px;
+    justify-content: center;
+  }
+
+  .banner-footer {
+    padding: 15px;
+    text-align: center;
+    background-color: #F5F5F5;
+  }
+}
