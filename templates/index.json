@@ -1,75 +1,113 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "test_hero_section_zEEnDQ": {
+      "type": "test-hero-section",
+      "name": "Test Hero Section",
+      "settings": {
+        "store_title": "TISSO VISION",
+        "store_title_color": "#000000",
+        "title_font_size": 26,
+        "store_slogan": "Find the ideal gift for your loved ones.",
+        "store_slogan_color": "",
+        "slogan_font_size": 18,
+        "nav_button_text": "Choose Gift",
+        "nav_button_url": "",
+        "nav_button_text_color": "#000000",
+        "nav_button_bg_color": "#ffffff",
+        "nav_button_text_size": 16,
+        "nav_button_hover_bg_color": "#000000",
+        "nav_button_hover_text_color": "#ffffff",
+        "hero_heading": "The Gift Guide",
+        "hero_heading_color": "",
+        "hero_heading_font_size": 70,
+        "hero_sub_heading": "Discover Joy: Your Ultimate Holiday Gift Destination.",
+        "hero_sub_heading_color": "#000000",
+        "hero_sub_heading_font_size": 20,
+        "button_text": "SHOP NOW",
+        "button_url": "",
+        "button_text_color": "#ffffff",
+        "button_bg_color": "#000000",
+        "button_text_size": 16,
+        "button_hover_bg_color": "#ffffff",
+        "button_hover_text_color": "#000000",
+        "footer_text": "SUSTAINABLE, ETHICALLY MADE ACTIVEWEAR",
+        "footer_color": "#000000",
+        "footer_font_size": 14
+      }
+    },
+    "test_custom_grid_69yrPB": {
+      "type": "test-custom-grid",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "product_item_t7iPmH": {
+          "type": "product_item",
           "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
+            "product": "black-leather-bag"
           }
         },
-        "button": {
-          "type": "buttons",
+        "product_item_NccYb7": {
+          "type": "product_item",
           "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "product": "blue-silk-tuxedo"
+          }
+        },
+        "product_item_UaMaAJ": {
+          "type": "product_item",
+          "settings": {
+            "product": "chequered-red-shirt"
+          }
+        },
+        "product_item_BEyhCT": {
+          "type": "product_item",
+          "settings": {
+            "product": "classic-leather-jacket"
+          }
+        },
+        "product_item_VEmNPQ": {
+          "type": "product_item",
+          "settings": {
+            "product": "classic-varsity-top"
+          }
+        },
+        "product_item_ffYAQm": {
+          "type": "product_item",
+          "settings": {
+            "product": "dark-denim-top"
           }
         }
       },
       "block_order": [
-        "heading",
-        "button"
+        "product_item_t7iPmH",
+        "product_item_NccYb7",
+        "product_item_UaMaAJ",
+        "product_item_BEyhCT",
+        "product_item_VEmNPQ",
+        "product_item_ffYAQm"
       ],
+      "name": "Test Custom Product Grid",
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "image_behavior": "none",
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
-      }
-    },
-    "featured_collection": {
-      "type": "featured-collection",
-      "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "all",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "padding_top": 44,
-        "padding_bottom": 36
+        "heading": "Tisso vision in the wild",
+        "grid_header_color": "#000000",
+        "grid_header_size": 20,
+        "collection": "",
+        "button_text_size": 14,
+        "button_text_color": "#FFFFFF",
+        "button_bg_color": "#000000",
+        "button_hover_text_color": "#000000",
+        "button_hover_bg_color": "#FFF544"
       }
     }
   },
   "order": [
-    "image_banner",
-    "featured_collection"
+    "test_hero_section_zEEnDQ",
+    "test_custom_grid_69yrPB"
   ]
 }
