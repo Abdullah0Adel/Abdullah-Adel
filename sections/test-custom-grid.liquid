@@ -36,7 +36,6 @@
   <div class="custom-grid-container">
     {% assign has_assigned_blocks = false %}
 
-    {% comment %} 1. Render Block Products if available {% endcomment %}
     {% for block in section.blocks %}
       {% assign card_product = block.settings.product %}
       {% if card_product != blank %}
@@ -66,7 +65,7 @@
       {% endif %}
     {% endfor %}
 
-    {% comment %} 2. Fallback Collection Products {% endcomment %}
+    {% comment %} Fallback Collection Products {% endcomment %}
     {% if has_assigned_blocks == false and section.settings.collection != blank %}
       {% for card_product in section.settings.collection.products limit: 6 %}
         <div class="grid-card-item" data-product-handle="{{ card_product.handle }}">
@@ -86,7 +85,7 @@
       {% endfor %}
     {% endif %}
 
-    {% comment %} 3. Placeholders {% endcomment %}
+    {% comment %}  Placeholders {% endcomment %}
     {% if has_assigned_blocks == false and section.settings.collection == blank %}
       {% for i in (1..6) %}
         <div class="grid-card-item placeholder-item">
